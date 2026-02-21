@@ -130,6 +130,7 @@ h2 {
 .modal-card h2 {
   margin-bottom: 20px;
   text-align: center;
+  padding: 10px;
 }
 
 .modal-card input {
