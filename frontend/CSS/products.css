@@ -1,0 +1,317 @@
+/* ================= PRODUCTS ================= */
+main {
+  padding: 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* ===== PRODUCT CARD ===== */
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  transition: 0.3s;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  padding: 10px 10px 4px;
+  font-size: 15px;
+}
+
+.price {
+  color: #ff3f6c;
+  font-weight: bold;
+  margin: 6px 0 10px;
+}
+
+/* ===== BUTTON GROUP — MAIN FIX ===== */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  /* Wishlist niche aayega */
+  gap: 8px;
+  padding: 0 14px 14px;
+  margin-top: auto;
+}
+
+/* Add to Bag */
+.bag-btn {
+  width: 100%;
+  padding: 9px 15px;
+  border: none;
+  background: #ff3f6c;
+  color: #fff;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.bag-btn:hover {
+  background: #e7335f;
+}
+
+/* ===== WISHLIST BUTTON — FIXED ===== */
+/* Pehle position:absolute tha isliye overlap ho raha tha */
+.wishlist-btn {
+  width: 100%;
+  padding: 9px 15px;
+  background: #fff;
+  color: #ff3f6c;
+  border: 2px solid #ff3f6c;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.wishlist-btn:hover {
+  background: #ff3f6c;
+  color: #fff;
+}
+
+.wishlist-btn.active span {
+  color: red;
+}
+
+
+
+/* ================= MODAL ================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #fff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.modal-card input:focus {
+  border-color: #ff3f6c;
+}
+
+/* Sirf modal ke submit buttons ko style karo */
+.modal-card button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #ff3f6c;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.modal-card button[type="submit"]:hover {
+  background: #e7335f;
+}
+
+/* ===============================
+   WISHLIST MODAL CSS
+   Yeh style.css ke end mein add karo
+   =============================== */
+
+/* ===== WISHLIST MODAL CARD ===== */
+#wishlistModal .modal-card {
+  width: 500px;
+  max-width: 95vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px;
+  border-radius: 10px;
+  background: #fff;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ===== HEADER ===== */
+.wishlist-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 12px;
+}
+
+.wishlist-modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #282c3f;
+  margin: 0;
+}
+
+/* Close Button */
+.wm-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: 0.2s;
+  width: auto !important;
+}
+
+.wm-close-btn:hover {
+  background: #f0f0f0;
+  color: #ff3f6c;
+}
+
+/* ===== EMPTY STATE ===== */
+#wishlistEmpty {
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+
+#wishlistEmpty .material-symbols-outlined {
+  font-size: 60px;
+  color: #ddd;
+}
+
+#wishlistEmpty p {
+  color: #999;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== PRODUCTS GRID ===== */
+#wishlistModalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ===== WISHLIST ITEM CARD ===== */
+.wishlist-modal-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.wishlist-modal-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-modal-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  padding: 8px;
+  background: #f9f9f9;
+  display: block;
+}
+
+/* ===== PRODUCT INFO ===== */
+.wm-info {
+  padding: 8px 10px 12px;
+}
+
+.wm-info h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #282c3f;
+  margin-bottom: 4px;
+}
+
+.wm-price {
+  color: #ff3f6c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ===== REMOVE BUTTON ===== */
+.wm-remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  padding: 0px;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #555;
+  transition: 0.2s;
+  line-height: 1;
+}
+
+.wm-remove-btn:hover {
+  background: #ff3f6c;
+  color: #fff;
+  border-color: #ff3f6c;
+}
+
+/* ===== WISHLIST BTN ACTIVE STATE ===== */
+.wishlist-btn.active {
+  background: #fff0f3;
+  color: #ff3f6c;
+  border: 2px solid #ff3f6c;
+}

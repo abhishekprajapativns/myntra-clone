@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Myntra Clone</title>
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/nav.css" />
+    <link rel="stylesheet" href="./CSS/banner.css" />
+    <link rel="stylesheet" href="./CSS/products.css" />
+    <link rel="stylesheet" href="./CSS/footer.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+  </head>
+
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+      <div class="logo">
+        <img src="./images/myntra_logo.webp" alt="Myntra Logo" />
+      </div>
+
+      <ul>
+        <li><a href="#men">Men</a></li>
+        <li><a href="#women">Women</a></li>
+        <li><a href="#kids">Kids</a></li>
+        <li><a href="#beauty">Beauty</a></li>
+        <li><a href="#home">Home</a></li>
+        <li>
+          <a href="#studio">Studio <span class="new-badge">NEW</span></a>
+        </li>
+      </ul>
+
+      <form role="search">
+        <input type="text" placeholder="Search for products..." />
+      </form>
+
+      <div class="nav-icons">
+        <button type="button" id="profile-btn">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </button>
+
+        <button type="button" id="wishlist-btn">
+          <span class="material-symbols-outlined">favorite</span>
+          <span>Wishlist(<span class="wishlist-count">0</span>)</span>
+        </button>
+
+        <button type="button" id="bag-btn">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span>Bag(<span class="bag-count">0</span>)</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== BANNER ===== -->
+    <div class="banner">
+      <div class="slider-wrapper" id="sliderWrapper">
+        <div class="slide">
+          <img src="./images/banners/Activewear_DK.webp" alt="Slide 1" />
+        </div>
+        <div class="slide">
+          <img src="./images/banners/banner.jpg" alt="Slide 2" />
+        </div>
+        <div class="slide">
+          <img src="./images/banners/Handbags_Desk.webp" alt="Slide 3" />
+        </div>
+        <div class="slide">
+          <img src="./images/banners/USPA_Desk_Banner.webp" alt="Slide 4" />
+        </div>
+        <div class="slide">
+          <img src="./images/banners/wd.webp" alt="Slide 5" />
+        </div>
+        <div class="slide">
+          <img src="./images/banners/Xn5v.webp" alt="Slide 6" />
+        </div>
+      </div>
+
+      <div class="slider-dots" id="sliderDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+        <span class="dot" onclick="goToSlide(4)"></span>
+        <span class="dot" onclick="goToSlide(5)"></span>
+      </div>
+    </div>
+
+    <!-- ===== PRODUCTS ===== -->
+    <main>
+      <section>
+        <h2>Featured Products</h2>
+
+        <div class="product-container">
+          <div class="product-card">
+            <img src="./images/products/1.png" alt="Men T-Shirt" />
+            <h3>Men's T-Shirt</h3>
+            <p class="price">₹499</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/3.png" alt="Shoes" />
+            <h3>Shoes</h3>
+            <p class="price">₹1999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/4.png" alt="Jacket" />
+            <h3>Jacket</h3>
+            <p class="price">₹2599</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/5.png" alt="shirt" />
+            <h3>Shirt</h3>
+            <p class="price">₹699</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/6.png" alt="sandle" />
+            <h3>Sandle</h3>
+            <p class="price">₹1599</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/7.png" alt="T-Shirt" />
+            <h3>T-Shirt</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/8.png" alt="T-Shirt" />
+            <h3>T-Shirt</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/9.png" alt="shoes" />
+            <h3>Shoes</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/10.png" alt="shoes" />
+            <h3>Shoes</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/11.png" alt="sandle" />
+            <h3>Sandle</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="./images/products/12.png" alt="Jeans" />
+            <h3>Jeans</h3>
+            <p class="price">₹999</p>
+            <div class="btn-group">
+              <button type="button" class="bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn">Wishlist</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-main">
+        <!-- Col 1: Online Shopping + Useful Links -->
+        <div class="footer-col">
+          <h4>Online Shopping</h4>
+          <ul>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">Myntra Insider</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Customer Policies -->
+        <div class="footer-col">
+          <h4>Customer Policies</h4>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Track Orders</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Cancellation</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: App + Social -->
+        <div class="footer-col">
+          <h4>Experience Myntra App on Mobile</h4>
+          <div class="app-buttons">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.myntra.android"
+              class="app-btn"
+            >
+              <svg viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M3.18 23.76c.34.19.73.21 1.1.05l12.47-7.2-2.65-2.65-10.92 9.8zm-1.14-20.7C1.77 3.4 1.5 3.82 1.5 4.35v15.3c0 .53.27.95.54 1.29l.09.08 8.58-8.58v-.2L2.13 3.06l-.09.01zm17.07 8.4l-2.3-1.33-2.93 2.93 2.93 2.93 2.31-1.33c.66-.38.66-1.81-.01-2.2zM4.28.18c-.37-.16-.76-.14-1.1.06l10.92 9.8 2.65-2.65L4.28.18z"
+                />
+              </svg>
+              <div class="app-btn-text">
+                <span>GET IT ON</span>
+                <span>Google Play</span>
+              </div>
+            </a>
+            <a
+              href="https://apps.apple.com/in/app/myntra-fashion-shopping-app/id671497087"
+              class="app-btn"
+            >
+              <svg viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                />
+              </svg>
+              <div class="app-btn-text">
+                <span>Download on the</span>
+                <span>App Store</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="social-section">
+            <h4>Keep In Touch</h4>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/myntra" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  />
+                </svg>
+              </a>
+              <a href="https://www.twitter.com/myntra" title="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  />
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/myntra" title="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"
+                  />
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/myntra" title="Instagram">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 4: Trust Badges -->
+        <div class="trust-col">
+          <div class="trust-item">
+            <div class="trust-icon">
+              <img src="./images/footer/original.png" alt="original" />
+            </div>
+            <div class="trust-text">
+              <strong>100% ORIGINAL guarantee</strong>
+              <p>for all products at myntra.com</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">
+              <img
+                src="./images/footer/Return-Window-image.png"
+                alt="return-window"
+              />
+            </div>
+            <div class="trust-text">
+              <strong>Return within 14 days</strong>
+              <p>of receiving your order</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 www.myntra.com. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- ===== AUTH MODAL ===== -->
+    <div class="modal-overlay" id="authModal">
+      <div class="modal-card">
+        <!-- LOGIN FORM -->
+        <form id="loginView" action="/login" method="POST">
+          <h2>Login</h2>
+
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+
+          <button type="submit">Login</button>
+        </form>
+
+        <!-- SIGNUP FORM -->
+        <form id="signupView" action="/signup" method="POST">
+          <h2>Create Account</h2>
+
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            required
+          />
+          <input type="text" name="lastName" placeholder="Last Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="wishlistModal">
+      <div class="modal-card">
+        <div class="wishlist-modal-header">
+          <h2>❤️ My Wishlist (<span class="wishlist-count">0</span> items)</h2>
+          <button class="wm-close-btn" onclick="closeWishlistModal()">✕</button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="wishlistEmpty">
+          <span class="material-symbols-outlined">favorite</span>
+          <p>
+            Your wishlist is empty!<br />Click 🤍 on any product to save it.
+          </p>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="wishlistModalGrid"></div>
+      </div>
+    </div>
+
+    <script src="./Javascript/profile.js"></script>
+    <script src="./Javascript/wishlist.js"></script>
+    <script src="./Javascript/bag.js"></script>
+    <script src="./Javascript/slide.js"></script>
+  </body>
+</html>
