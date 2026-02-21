@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./CSS/banner.css" />
     <link rel="stylesheet" href="./CSS/products.css" />
     <link rel="stylesheet" href="./CSS/footer.css" />
+    <link rel="stylesheet" href="./CSS/bag.css" />
 
     <link
       rel="stylesheet"
@@ -400,6 +401,92 @@
 
         <!-- Products Grid -->
         <div id="wishlistModalGrid"></div>
+      </div>
+    </div>
+
+    <!-- ===== BAG MODAL ===== -->
+    <div class="modal-overlay" id="bagModal">
+      <div class="modal-card">
+        <div class="bag-modal-header">
+          <h2>🛍️ My Bag (<span class="bag-count">0</span> items)</h2>
+          <button onclick="closeBagModal()">✕</button>
+        </div>
+        <div id="bagEmpty">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <p>Your bag is empty!<br />Click "Add to Bag" on any product.</p>
+        </div>
+        <div id="bagModalGrid"></div>
+        <div id="bagTotal"></div>
+      </div>
+    </div>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="modal-overlay" id="checkoutModal">
+      <div class="modal-card">
+        <div class="checkout-header">
+          <h2>Checkout</h2>
+          <button onclick="closeCheckoutModal()">✕</button>
+        </div>
+
+        <div class="checkout-steps">
+          <div id="step1Tab" class="step active-step">1. Address</div>
+          <div id="step2Tab" class="step">2. Payment</div>
+        </div>
+
+        <!-- STEP 1 — ADDRESS -->
+        <div id="checkoutStep1">
+          <h3>Delivery Address</h3>
+          <div class="input-row">
+            <input type="text" id="firstName" placeholder="First Name" />
+            <input type="text" id="lastName" placeholder="Last Name" />
+          </div>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Mobile Number"
+            maxlength="10"
+          />
+          <input type="text" id="pincode" placeholder="Pincode" maxlength="6" />
+          <input
+            type="text"
+            id="address"
+            placeholder="Address (House No, Street, Area)"
+          />
+          <div class="input-row">
+            <input type="text" id="city" placeholder="City" />
+            <input type="text" id="state" placeholder="State" />
+          </div>
+          <button onclick="goToPayment()">Continue to Payment →</button>
+        </div>
+
+        <!-- STEP 2 — PAYMENT -->
+        <div id="checkoutStep2">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <label>
+              <input type="radio" name="payment" value="upi" checked />
+              <span>📱 UPI</span>
+            </label>
+            <label>
+              <input type="radio" name="payment" value="card" />
+              <span>💳 Credit / Debit Card</span>
+            </label>
+            <label>
+              <input type="radio" name="payment" value="cod" />
+              <span>💵 Cash on Delivery</span>
+            </label>
+          </div>
+
+          <div class="order-summary-box">
+            <h4>Order Summary</h4>
+            <div id="checkoutSummary"></div>
+          </div>
+
+          <div class="checkout-btns">
+            <button onclick="goToAddress()">← Back</button>
+            <button onclick="placeOrder()">Place Order 🎉</button>
+          </div>
+        </div>
       </div>
     </div>
 
