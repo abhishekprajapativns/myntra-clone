@@ -7,6 +7,7 @@ const modal = document.getElementById("authModal");
 profileBtn.addEventListener("click", function () {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
+  showLogin(); // hamesha Login se shuru karo
 });
 
 // ===============================
@@ -14,10 +15,36 @@ profileBtn.addEventListener("click", function () {
 // ===============================
 modal.addEventListener("click", function (e) {
   if (e.target === modal) {
-    modal.classList.remove("active");
-    document.body.style.overflow = "auto";
+    closeAuthModal();
   }
 });
+
+// ===============================
+// CLOSE FUNCTION
+// ===============================
+function closeAuthModal() {
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+// ===============================
+// TOGGLE — LOGIN / SIGNUP
+// ===============================
+const loginView = document.getElementById("loginView");
+const signupView = document.getElementById("signupView");
+
+// Pehle sirf Login dikhao
+signupView.style.display = "none";
+
+function showLogin() {
+  loginView.style.display = "block";
+  signupView.style.display = "none";
+}
+
+function showSignup() {
+  loginView.style.display = "none";
+  signupView.style.display = "block";
+}
 
 // ===============================
 // LOGIN FORM SUBMIT
@@ -36,8 +63,7 @@ loginForm.addEventListener("submit", function (e) {
   }
 
   alert("Login Successful ✅");
-  modal.classList.remove("active");
-  document.body.style.overflow = "auto";
+  closeAuthModal();
 });
 
 // ===============================
@@ -59,6 +85,5 @@ signupForm.addEventListener("submit", function (e) {
   }
 
   alert("Account Created Successfully 🎉");
-  modal.classList.remove("active");
-  document.body.style.overflow = "auto";
+  closeAuthModal();
 });

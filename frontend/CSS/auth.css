@@ -1,0 +1,89 @@
+/* ===== AUTH MODAL ===== */
+#authModal .modal-card {
+  width: 420px;
+  max-width: 95vw;
+  padding: 32px;
+  border-radius: 10px;
+  background: #fff;
+  position: relative;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Form Headings */
+#loginView h2,
+#signupView h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #282c3f;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Inputs */
+#loginView input,
+#signupView input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+#loginView input:focus,
+#signupView input:focus {
+  border-color: #ff3f6c;
+}
+
+/* Submit Button */
+#loginView button[type="submit"],
+#signupView button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #ff3f6c;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+
+#loginView button[type="submit"]:hover,
+#signupView button[type="submit"]:hover {
+  background: #e0355a;
+}
+
+/* Toggle Text */
+.toggle-text {
+  text-align: center;
+  font-size: 14px;
+  color: #696b79;
+  margin-top: 16px;
+}
+
+.toggle-text span {
+  color: #ff3f6c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.toggle-text span:hover {
+  text-decoration: underline;
+}
