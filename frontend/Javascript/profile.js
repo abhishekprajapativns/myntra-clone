@@ -7,7 +7,7 @@ const modal = document.getElementById("authModal");
 profileBtn.addEventListener("click", function () {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
-  showLogin(); // hamesha Login se shuru karo
+  showLogin();
 });
 
 // ===============================
@@ -33,7 +33,6 @@ function closeAuthModal() {
 const loginView = document.getElementById("loginView");
 const signupView = document.getElementById("signupView");
 
-// Pehle sirf Login dikhao
 signupView.style.display = "none";
 
 function showLogin() {
@@ -47,11 +46,11 @@ function showSignup() {
 }
 
 // ===============================
-// LOGIN FORM SUBMIT
+// LOGIN FORM SUBMIT — BACKEND
 // ===============================
 const loginForm = document.getElementById("loginView");
 
-loginForm.addEventListener("submit", function (e) {
+loginForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const email = loginForm.email.value.trim();
@@ -62,16 +61,34 @@ loginForm.addEventListener("submit", function (e) {
     return;
   }
 
-  alert("Login Successful ✅");
-  closeAuthModal();
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      alert(`Welcome back ${data.user.firstName}! ✅`);
+      closeAuthModal();
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    alert("Server se connect nahi ho pa raha!");
+  }
 });
 
 // ===============================
-// SIGNUP FORM SUBMIT
+// SIGNUP FORM SUBMIT — BACKEND
 // ===============================
 const signupForm = document.getElementById("signupView");
 
-signupForm.addEventListener("submit", function (e) {
+signupForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const firstName = signupForm.firstName.value.trim();
@@ -84,6 +101,22 @@ signupForm.addEventListener("submit", function (e) {
     return;
   }
 
-  alert("Account Created Successfully 🎉");
-  closeAuthModal();
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Account Created Successfully 🎉");
+      showLogin();
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    alert("Server se connect nahi ho pa raha!");
+  }
 });
