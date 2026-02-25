@@ -5,9 +5,6 @@ and backend from scratch. I took inspiration from Myntra's website
 to build this e-commerce application.
 
 
-## 🚀 Live Demo
-Coming Soon...
-
 ## ✨ What I Built
 
 - Navigation bar with search
