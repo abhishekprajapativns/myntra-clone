@@ -245,7 +245,7 @@ function decreaseQty(id) {
   }
 }
 
-// REMOVE FROM BAG
+//REMOVE FROM BAG
 
 function removeFromBag(id) {
   bag = bag.filter((p) => p.id !== String(id));
