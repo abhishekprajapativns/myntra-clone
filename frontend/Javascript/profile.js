@@ -1,6 +1,6 @@
-// ===============================
+
 // OPEN MODAL (Profile Button)
-// ===============================
+
 const profileBtn = document.querySelector(".nav-icons button");
 const modal = document.getElementById("authModal");
 
@@ -10,26 +10,26 @@ profileBtn.addEventListener("click", function () {
   showLogin();
 });
 
-// ===============================
+
 // CLOSE MODAL (Outside Click)
-// ===============================
+
 modal.addEventListener("click", function (e) {
   if (e.target === modal) {
     closeAuthModal();
   }
 });
 
-// ===============================
+
 // CLOSE FUNCTION
-// ===============================
+
 function closeAuthModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "auto";
 }
 
-// ===============================
+
 // TOGGLE — LOGIN / SIGNUP
-// ===============================
+
 const loginView = document.getElementById("loginView");
 const signupView = document.getElementById("signupView");
 
@@ -45,9 +45,9 @@ function showSignup() {
   signupView.style.display = "block";
 }
 
-// ===============================
+
 // LOGIN FORM SUBMIT — BACKEND
-// ===============================
+
 const loginForm = document.getElementById("loginView");
 
 loginForm.addEventListener("submit", async function (e) {
@@ -83,9 +83,9 @@ loginForm.addEventListener("submit", async function (e) {
   }
 });
 
-// ===============================
+
 // SIGNUP FORM SUBMIT — BACKEND
-// ===============================
+
 const signupForm = document.getElementById("signupView");
 
 signupForm.addEventListener("submit", async function (e) {
