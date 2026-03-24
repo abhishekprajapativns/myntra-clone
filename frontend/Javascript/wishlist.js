@@ -1,6 +1,6 @@
-// ===============================
+
 // WISHLIST — COMPLETE WITH LOCALSTORAGE
-// ===============================
+
 
 // localStorage se load karo
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -8,9 +8,9 @@ let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 const wishlistButtons = document.querySelectorAll(".wishlist-btn");
 const wishlistCount = document.querySelector(".wishlist-count");
 
-// ===============================
+
 // PAGE LOAD PE — SAVED BUTTONS HIGHLIGHT KARO
-// ===============================
+
 wishlistButtons.forEach((button, index) => {
   const id = String(index + 1);
   if (wishlist.find((p) => p.id === id)) {
@@ -21,9 +21,9 @@ wishlistButtons.forEach((button, index) => {
 
 wishlistCount.innerText = wishlist.length;
 
-// ===============================
+
 // PRODUCT BUTTONS — ADD / REMOVE
-// ===============================
+
 wishlistButtons.forEach((button, index) => {
   button.addEventListener("click", function () {
     const productCard = this.closest(".product-card");
