@@ -1,4 +1,4 @@
-/* ===== AUTH MODAL ===== */
+/* AUTH MODAL  */
 #authModal .modal-card {
   width: 420px;
   max-width: 95vw;
@@ -62,7 +62,7 @@
   font-weight: 700;
   cursor: pointer;
   margin-top: 4px;
-  transition: background 0.2s;
+  transition: 0.2s;
 }
 
 #loginView button[type="submit"]:hover,
