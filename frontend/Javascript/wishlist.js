@@ -1,13 +1,10 @@
-
 // WISHLIST — COMPLETE WITH LOCALSTORAGE
-
 
 // localStorage se load karo
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 const wishlistButtons = document.querySelectorAll(".wishlist-btn");
 const wishlistCount = document.querySelector(".wishlist-count");
-
 
 // PAGE LOAD PE — SAVED BUTTONS HIGHLIGHT KARO
 
@@ -20,7 +17,6 @@ wishlistButtons.forEach((button, index) => {
 });
 
 wishlistCount.innerText = wishlist.length;
-
 
 // PRODUCT BUTTONS — ADD / REMOVE
 

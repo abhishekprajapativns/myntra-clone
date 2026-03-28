@@ -26,7 +26,7 @@
   overflow-y: auto;
 }
 
-/* ===== BAG MODAL ===== */
+/*  BAG MODAL  */
 .bag-modal-header {
   display: flex;
   justify-content: space-between;
@@ -68,7 +68,7 @@
   font-size: 14px;
 }
 
-/* ===== BAG ITEM ===== */
+/*  BAG ITEM  */
 .bag-item {
   display: flex;
   align-items: center;

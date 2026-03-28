@@ -1,15 +1,12 @@
-// ===============================
 // SLIDER — AUTO SLIDE WITH DOTS
-// ===============================
 
 let currentSlide = 0;
 const totalSlides = 6;
 const wrapper = document.getElementById("sliderWrapper");
 const dots = document.querySelectorAll(".dot");
 
-// ===============================
 // SLIDE JAO
-// ===============================
+
 function goToSlide(index) {
   currentSlide = index;
   wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -19,9 +16,8 @@ function goToSlide(index) {
   dots[currentSlide].classList.add("active");
 }
 
-// ===============================
 // AUTO SLIDE — HAR 3 SECOND
-// ===============================
+
 function autoSlide() {
   currentSlide = (currentSlide + 1) % totalSlides;
   goToSlide(currentSlide);

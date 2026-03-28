@@ -1,4 +1,3 @@
-
 // OPEN MODAL (Profile Button)
 
 const profileBtn = document.querySelector(".nav-icons button");
@@ -10,7 +9,6 @@ profileBtn.addEventListener("click", function () {
   showLogin();
 });
 
-
 // CLOSE MODAL (Outside Click)
 
 modal.addEventListener("click", function (e) {
@@ -19,14 +17,12 @@ modal.addEventListener("click", function (e) {
   }
 });
 
-
 // CLOSE FUNCTION
 
 function closeAuthModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "auto";
 }
-
 
 // TOGGLE — LOGIN / SIGNUP
 
@@ -44,7 +40,6 @@ function showSignup() {
   loginView.style.display = "none";
   signupView.style.display = "block";
 }
-
 
 // LOGIN FORM SUBMIT — BACKEND
 
@@ -82,7 +77,6 @@ loginForm.addEventListener("submit", async function (e) {
     alert("Server se connect nahi ho pa raha!");
   }
 });
-
 
 // SIGNUP FORM SUBMIT — BACKEND
 
