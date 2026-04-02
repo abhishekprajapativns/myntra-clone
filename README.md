@@ -18,7 +18,7 @@ to build this e-commerce application.
 ## 🛠️ Technologies Used
 
 **Frontend:**
-- HTML5
+- HTML
 - CSS3
 - Vanilla JavaScript
 
