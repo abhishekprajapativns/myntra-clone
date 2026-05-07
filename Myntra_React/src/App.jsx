@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/auth" element={<Auth />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
