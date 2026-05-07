@@ -9,6 +9,15 @@ const banners = [
   "/banners/Xn5v.webp",
 ];
 
+const banners = [
+  "/banners/Activewear_DK.webp",
+  "/banners/banner.jpg",
+  "/banners/Handbags_Desk.webp",
+  "/banners/USPA_Desk_Banner.webp",
+  "/banners/wd.webp",
+  "/banners/Xn5v.webp",
+];
+
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
