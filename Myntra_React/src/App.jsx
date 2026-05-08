@@ -1,11 +1,11 @@
-import { WishlistProvider } from "./pages/Wishlist";
+import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Bag from "./pages/Bag";
-import Wishlist, { WishlistProvider } from "./pages/Wishlist";
+import Wishlist from "./pages/Wishlist";
 import Auth from "./pages/Auth";
 import Footer from "./components/Footer";
 
