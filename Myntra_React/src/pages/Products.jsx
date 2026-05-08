@@ -1,4 +1,5 @@
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 
 const products = [
   { id: 1, name: "Men's T-Shirt", price: 499, image: "/products/1.png" },
@@ -14,6 +15,7 @@ const products = [
 
 function Products() {
   const { addToCart } = useCart();
+  const { addToWishlist, wishlist } = useWishlist();
 
   return (
     <div>
@@ -47,8 +49,13 @@ function Products() {
                   >
                     Add to Bag
                   </button>
-                  <button className="flex-1 border border-pink-600 text-pink-600 py-1 rounded text-sm">
-                    Wishlist
+                  <button
+                    onClick={() => addToWishlist(product)}
+                    className="flex-1 border border-pink-600 text-pink-600 py-1 rounded text-sm"
+                  >
+                    {wishlist.find((item) => item.id === product.id)
+                      ? "❤️ Wishlisted"
+                      : "Wishlist"}
                   </button>
                 </div>
               </div>
