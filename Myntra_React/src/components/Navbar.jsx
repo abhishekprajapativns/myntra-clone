@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
+
 function Navbar() {
   const { totalItems } = useCart();
+  const { totalWishlist } = useWishlist();
 
   return (
     <nav className="flex items-center justify-between px-6 py-3 shadow-md bg-white sticky top-0 z-50">
@@ -73,7 +76,7 @@ function Navbar() {
         </Link>
         <Link to="/wishlist" className="flex flex-col items-center text-sm">
           <span>❤️</span>
-          <span>Wishlist(0)</span>
+          <span>Wishlist({totalWishlist})</span>
         </Link>
         <Link to="/bag" className="flex flex-col items-center text-sm">
           <span>🛍️</span>
