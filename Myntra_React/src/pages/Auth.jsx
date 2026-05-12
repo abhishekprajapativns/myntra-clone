@@ -45,15 +45,33 @@ function Auth() {
     <div className="flex justify-center items-center min-h-[80vh] bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         {/* Toggle Buttons */}
+
         <div className="flex mb-6">
           <button
-            onClick={() => setIsLogin(true)}
+            onClick={() => {
+              setIsLogin(true);
+              setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+              });
+            }}
             className={`flex-1 py-2 font-semibold ${isLogin ? "border-b-2 border-pink-600 text-pink-600" : "text-gray-400"}`}
           >
             Login
           </button>
+
           <button
-            onClick={() => setIsLogin(false)}
+            onClick={() => {
+              setIsLogin(false);
+              setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+              });
+            }}
             className={`flex-1 py-2 font-semibold ${!isLogin ? "border-b-2 border-pink-600 text-pink-600" : "text-gray-400"}`}
           >
             Sign Up
