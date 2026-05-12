@@ -1,7 +1,45 @@
 import { useState } from "react";
+import axios from "axios";
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (isLogin) {
+        // Login API call
+
+        const res = await axios.post("http://localhost:5000/api/auth/login", {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        alert(res.data.message);
+      } else {
+        // Signup API call
+
+        const res = await axios.post(
+          "http://localhost:5000/api/auth/signup",
+          formData,
+        );
+
+        alert(res.data.message);
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-[80vh] bg-gray-100">
@@ -23,20 +61,28 @@ function Auth() {
         </div>
 
         {/* Login Form */}
+
         {isLogin ? (
           <div>
             <h2 className="text-xl font-bold mb-4">Login</h2>
             <input
               type="email"
+              name="email"
               placeholder="Email"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
             />
             <input
               type="password"
+              name="password"
               placeholder="Password"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-4 outline-none"
             />
-            <button className="w-full bg-pink-600 text-white py-2 rounded font-semibold">
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-pink-600 text-white py-2 rounded font-semibold"
+            >
               Login
             </button>
             <p className="text-center mt-3 text-sm">
@@ -50,29 +96,41 @@ function Auth() {
             </p>
           </div>
         ) : (
+          /* Signup form */
           <div>
             <h2 className="text-xl font-bold mb-4">Create Account</h2>
             <input
               type="text"
+              name="firstName"
               placeholder="First Name"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
             />
             <input
               type="text"
+              name="lastName"
               placeholder="Last Name"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
             />
             <input
               type="email"
+              name="email"
               placeholder="Email"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
             />
             <input
               type="password"
+              name="password"
               placeholder="Password"
+              onChange={handleChange}
               className="w-full border p-2 rounded mb-4 outline-none"
             />
-            <button className="w-full bg-pink-600 text-white py-2 rounded font-semibold">
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-pink-600 text-white py-2 rounded font-semibold"
+            >
               Create Account
             </button>
             <p className="text-center mt-3 text-sm">
