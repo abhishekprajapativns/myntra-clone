@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const authRoutes = require("./routes/auth");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
@@ -15,6 +16,8 @@ app.use(express.json());
 
 // To accept requests from the frontend
 app.use(cors());
+
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
