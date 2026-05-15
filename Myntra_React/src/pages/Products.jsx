@@ -1,19 +1,19 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 
-const products = [
-  { id: 1, name: "Men's T-Shirt", price: 499, image: "/products/1.png" },
-  { id: 2, name: "Shoes", price: 1999, image: "/products/3.png" },
-  { id: 3, name: "Jacket", price: 2599, image: "/products/4.png" },
-  { id: 4, name: "Shirt", price: 699, image: "/products/7.png" },
-  { id: 5, name: "T-Shirt", price: 999, image: "/products/8.png" },
-  { id: 6, name: "Shoes", price: 999, image: "/products/9.png" },
-  { id: 7, name: "Shoes", price: 999, image: "/products/10.png" },
-  { id: 8, name: "Sandal", price: 999, image: "/products/11.png" },
-  { id: 9, name: "Jeans", price: 999, image: "/products/12.png" },
-];
-
 function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await axios.get("http://localhost:5000/api/products");
+      setProducts(res.data);
+    };
+    fetchProducts();
+  }, []);
+
   const { addToCart } = useCart();
   const { addToWishlist, wishlist } = useWishlist();
 
@@ -26,7 +26,7 @@ function Products() {
         <div className="grid grid-cols-4 gap-6">
           {products.map((product) => (
             <div
-              key={product.id}
+              key={product._id}
               className="border rounded-lg overflow-hidden shadow hover:shadow-md transition"
             >
               {/* Image */}
@@ -53,7 +53,7 @@ function Products() {
                     onClick={() => addToWishlist(product)}
                     className="flex-1 border border-pink-600 text-pink-600 py-1 rounded text-sm"
                   >
-                    {wishlist.find((item) => item.id === product.id)
+                    {wishlist.find((item) => item._id === product._id)
                       ? "❤️ Wishlisted"
                       : "Wishlist"}
                   </button>
