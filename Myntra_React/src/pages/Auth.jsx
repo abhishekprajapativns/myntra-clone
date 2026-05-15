@@ -35,6 +35,9 @@ function Auth() {
         );
 
         alert(res.data.message);
+
+        setFormData({ firstName: "", lastName: "", email: "", password: "" });
+        setIsLogin(true);
       }
     } catch (error) {
       alert(error.response.data.message);
@@ -87,6 +90,7 @@ function Auth() {
               type="email"
               name="email"
               placeholder="Email"
+              value={formData.email}
               onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
             />
@@ -94,6 +98,7 @@ function Auth() {
               type="password"
               name="password"
               placeholder="Password"
+              value={formData.password}
               onChange={handleChange}
               className="w-full border p-2 rounded mb-4 outline-none"
             />
@@ -120,6 +125,7 @@ function Auth() {
             <input
               type="text"
               name="firstName"
+              value={formData.firstName}
               placeholder="First Name"
               onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
@@ -127,6 +133,7 @@ function Auth() {
             <input
               type="text"
               name="lastName"
+              value={formData.lastName}
               placeholder="Last Name"
               onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
@@ -134,6 +141,7 @@ function Auth() {
             <input
               type="email"
               name="email"
+              value={formData.email}
               placeholder="Email"
               onChange={handleChange}
               className="w-full border p-2 rounded mb-3 outline-none"
@@ -141,6 +149,7 @@ function Auth() {
             <input
               type="password"
               name="password"
+              value={formData.password}
               placeholder="Password"
               onChange={handleChange}
               className="w-full border p-2 rounded mb-4 outline-none"
@@ -154,7 +163,15 @@ function Auth() {
             <p className="text-center mt-3 text-sm">
               Already have account?{" "}
               <span
-                onClick={() => setIsLogin(true)}
+                onClick={() => {
+                  setIsLogin(true);
+                  setFormData({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    password: "",
+                  });
+                }}
                 className="text-pink-600 cursor-pointer"
               >
                 Login
