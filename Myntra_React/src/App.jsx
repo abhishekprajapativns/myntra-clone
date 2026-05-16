@@ -8,6 +8,7 @@ import Bag from "./pages/Bag";
 import Wishlist from "./pages/Wishlist";
 import Auth from "./pages/Auth";
 import Footer from "./components/Footer";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/bag" element={<Bag />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Footer />
         </BrowserRouter>
