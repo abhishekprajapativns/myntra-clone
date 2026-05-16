@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function Bag() {
   const { cart, totalPrice, increaseQty, decreaseQty, removeFromCart } =
     useCart();
+
+  const navigate = useNavigate();
 
   return (
     <div className="px-6 py-8 min-h-screen">
@@ -73,7 +76,10 @@ function Bag() {
               <span>Total</span>
               <span className="font-bold text-pink-600">₹{totalPrice}</span>
             </div>
-            <button className="w-full bg-pink-600 text-white py-2 rounded font-semibold">
+            <button
+              onClick={() => navigate("/checkout")}
+              className="w-full bg-pink-600 text-white py-2 rounded font-semibold"
+            >
               Proceed to Checkout
             </button>
           </div>
