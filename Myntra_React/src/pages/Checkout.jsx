@@ -19,6 +19,16 @@ function Checkout() {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
+  const handlePlaceOrder = () => {
+    if (payment === "cod") {
+      alert("Order placed successfully! 🎉 Cash on Delivery Selected.");
+    } else if (payment === "upi") {
+      alert("Order placed successfully! 🎉 UPI payment selected.");
+    } else if (payment === "card") {
+      alert("Order placed successfully! 🎉 Card payment selected.");
+    }
+  };
+
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -59,20 +69,27 @@ function Checkout() {
               className="border p-2 rounded outline-none"
             />
           </div>
-          <input
-            type="text"
-            name="phone"
-            placeholder="Mobile Number"
-            value={address.phone}
-            onChange={handleChange}
-            className="w-full border p-2 rounded outline-none mt-3"
-          />
+          <div className="flex mt-3">
+            <span className="border p-2 rounded-l bg-gray-100 text-gray-600">
+              +91
+            </span>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Mobile Number"
+              value={address.phone}
+              onChange={handleChange}
+              maxLength={10}
+              className="w-full border border-l-0 p-2 rounded-r outline-none"
+            />
+          </div>
           <input
             type="text"
             name="pincode"
             placeholder="Pincode"
             value={address.pincode}
             onChange={handleChange}
+            maxLength={6}
             className="w-full border p-2 rounded outline-none mt-3"
           />
           <input
@@ -171,7 +188,10 @@ function Checkout() {
             >
               ← Back
             </button>
-            <button className="flex-1 bg-pink-600 text-white py-2 rounded font-semibold">
+            <button
+              onClick={handlePlaceOrder}
+              className="flex-1 bg-pink-600 text-white py-2 rounded font-semibold"
+            >
               Place Order 🎉
             </button>
           </div>
