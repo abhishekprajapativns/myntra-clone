@@ -75,7 +75,7 @@ document
     if (e.target === this) closeWishlistModal();
   });
 
-// MODAL MEIN PRODUCTS
+//  MODAL PRODUCTS
 
 function renderWishlistModal() {
   const grid = document.getElementById("wishlistModalGrid");

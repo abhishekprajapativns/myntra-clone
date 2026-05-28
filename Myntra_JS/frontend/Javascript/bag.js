@@ -160,11 +160,11 @@ function goToPayment() {
     return;
   }
   if (phone.length !== 10) {
-    alert("Mobile number 10 digits ka hona chahiye!");
+    alert("The mobile number must be 10 digits long!");
     return;
   }
   if (pincode.length !== 6) {
-    alert("Pincode 6 digits ka hona chahiye!");
+    alert("The PIN code must be 6 digits long!");
     return;
   }
 

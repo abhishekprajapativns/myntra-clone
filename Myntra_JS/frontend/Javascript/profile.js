@@ -74,7 +74,7 @@ loginForm.addEventListener("submit", async function (e) {
       alert(data.message);
     }
   } catch (err) {
-    alert("Server se connect nahi ho pa raha!");
+    alert("Unable to connect to the server!");
   }
 });
 
@@ -111,6 +111,6 @@ signupForm.addEventListener("submit", async function (e) {
       alert(data.message);
     }
   } catch (err) {
-    alert("Server se connect nahi ho pa raha!");
+    alert("Unable to connect to the server!");
   }
 });
