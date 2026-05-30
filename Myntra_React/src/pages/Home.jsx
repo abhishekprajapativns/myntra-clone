@@ -21,6 +21,22 @@ const products = [
   { id: 7, name: "Shoes", price: 999, image: "/products/10.png" },
   { id: 8, name: "Sandal", price: 999, image: "/products/11.png" },
   { id: 9, name: "Jeans", price: 999, image: "/products/12.png" },
+  { id: 10, name: "Shoes", price: 1999, image: "/products/3.png" },
+  { id: 11, name: "Jacket", price: 2599, image: "/products/4.png" },
+  { id: 12, name: "Shirt", price: 699, image: "/products/7.png" },
+  { id: 13, name: "T-Shirt", price: 999, image: "/products/8.png" },
+  { id: 14, name: "Shoes", price: 999, image: "/products/9.png" },
+  { id: 15, name: "Shoes", price: 999, image: "/products/10.png" },
+  { id: 16, name: "Sandal", price: 999, image: "/products/11.png" },
+  { id: 17, name: "Jeans", price: 999, image: "/products/12.png" },
+  { id: 18, name: "Shoes", price: 1999, image: "/products/3.png" },
+  { id: 19, name: "Jacket", price: 2599, image: "/products/4.png" },
+  { id: 20, name: "Shirt", price: 699, image: "/products/7.png" },
+  { id: 21, name: "T-Shirt", price: 999, image: "/products/8.png" },
+  { id: 22, name: "Shoes", price: 999, image: "/products/9.png" },
+  { id: 23, name: "Shoes", price: 999, image: "/products/10.png" },
+  { id: 24, name: "Sandal", price: 999, image: "/products/11.png" },
+  { id: 25, name: "Jeans", price: 999, image: "/products/12.png" },
 ];
 
 function Home() {
@@ -64,11 +80,13 @@ function Home() {
               key={product.id}
               className="border rounded-lg overflow-hidden shadow hover:shadow-md transition"
             >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-64 object-cover"
-              />
+              <div className="h-64 bg-gray-50 flex items-center justify-center">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <div className="p-3">
                 <h3 className="font-semibold">{product.name}</h3>
                 <p className="text-pink-600 font-bold">₹{product.price}</p>
