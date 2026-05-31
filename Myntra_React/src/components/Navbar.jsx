@@ -1,10 +1,20 @@
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
   const { totalItems } = useCart();
   const { totalWishlist } = useWishlist();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && search.trim() !== "") {
+      navigate(`/products?search=${search.trim()}`);
+      setSearch("");
+    }
+  };
 
   return (
     <nav className="flex items-center justify-between px-6 py-3 shadow-md bg-white sticky top-0 z-50">
@@ -59,7 +69,6 @@ function Navbar() {
       </div>
 
       {/* Search Bar */}
-
       <div className="flex items-center bg-gray-100 border border-gray-200 rounded-full px-4 py-2 gap-2 w-64 focus-within:border-pink-400 focus-within:bg-white transition-all duration-200 shadow-sm">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +86,37 @@ function Navbar() {
         </svg>
         <input
           type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleSearch}
           placeholder="Search for products, brands..."
-          className="outline-none text-sm w-full bg-transparent text-gray-700 placeholder-gray-900"
+          className="outline-none text-sm w-full bg-transparent text-gray-700 placeholder-gray-400"
         />
+        {search && (
+          <button
+            onClick={() => setSearch("")}
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Icons */}
-
       <div className="flex gap-6">
-        {/* Profile Icon */}
-
         <Link
           to="/auth"
           className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
@@ -108,8 +138,6 @@ function Navbar() {
           <span>Profile</span>
         </Link>
 
-        {/* Wishlist Icon */}
-
         <Link
           to="/wishlist"
           className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
@@ -130,8 +158,6 @@ function Navbar() {
           </svg>
           <span>Wishlist({totalWishlist})</span>
         </Link>
-
-        {/* Bag Icon */}
 
         <Link
           to="/bag"

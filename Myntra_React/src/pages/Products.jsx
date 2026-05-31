@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
+import { useLocation } from "react-router-dom";
 
 function ProductCard({ product, addToCart, addToWishlist, wishlist }) {
   const isWishlisted = wishlist.find((item) => item._id === product._id);
 
   return (
     <div className="border rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group bg-white">
-      {/* Image + Heart Button */}
       <div className="relative">
         <div className="h-64 bg-gray-50 overflow-hidden">
           <img
@@ -17,8 +17,6 @@ function ProductCard({ product, addToCart, addToWishlist, wishlist }) {
             className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
           />
         </div>
-
-        {/* Heart Button */}
         <button
           onClick={() => addToWishlist(product)}
           className="absolute top-2 right-2 bg-white rounded-full p-1.5 shadow-md hover:scale-110 transition-transform"
@@ -35,7 +33,7 @@ function ProductCard({ product, addToCart, addToWishlist, wishlist }) {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 text-gray-700"
+              className="w-5 h-5 text-gray-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -50,8 +48,6 @@ function ProductCard({ product, addToCart, addToWishlist, wishlist }) {
           )}
         </button>
       </div>
-
-      {/* Product Info */}
       <div className="p-3">
         <h3 className="font-semibold text-gray-800 truncate">{product.name}</h3>
         <div className="flex items-center gap-2 mt-1">
@@ -63,7 +59,6 @@ function ProductCard({ product, addToCart, addToWishlist, wishlist }) {
             {Math.round((500 / (product.price + 500)) * 100)}% OFF
           </p>
         </div>
-
         <button
           onClick={() => addToCart(product)}
           className="w-full mt-3 bg-white border-2 border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white py-1.5 rounded-full text-sm font-semibold transition-all duration-200"
@@ -80,6 +75,10 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
   const { addToWishlist, wishlist } = useWishlist();
+  const location = useLocation();
+
+  // URL se search query lo
+  const searchQuery = new URLSearchParams(location.search).get("search") || "";
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -95,23 +94,56 @@ function Products() {
     fetchProducts();
   }, []);
 
+  // Search filter
+  const filteredProducts = searchQuery
+    ? products.filter((p) =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+    : products;
+
   return (
     <div>
       <section className="px-6 py-8">
-        <h2 className="text-2xl font-bold mb-6">All Products</h2>
+        {/* Heading */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">
+            {searchQuery ? `Results for "${searchQuery}"` : "All Products"}
+          </h2>
+          {searchQuery && (
+            <span className="text-gray-400 text-sm">
+              {filteredProducts.length} products found
+            </span>
+          )}
+        </div>
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="w-10 h-10 border-4 border-pink-600 border-t-transparent rounded-full animate-spin"></div>
           </div>
-        ) : products.length === 0 ? (
+        ) : filteredProducts.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 text-gray-400">
-            <p className="text-lg font-semibold">Koi products nahi mile</p>
-            <p className="text-sm mt-1">Backend server check karo</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-16 h-16 mb-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
+              />
+            </svg>
+            <p className="text-lg font-semibold">
+              No products found for "{searchQuery}"
+            </p>
+            <p className="text-sm mt-1">Koi aur search try karo!</p>
           </div>
         ) : (
           <div className="grid grid-cols-4 gap-6">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductCard
                 key={product._id}
                 product={product}
