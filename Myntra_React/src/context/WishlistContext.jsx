@@ -5,21 +5,23 @@ const WishlistContext = createContext();
 export function WishlistProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
 
+  function getId(item) {
+    return item._id || item.id;
+  }
+
   function addToWishlist(product) {
-    const exists = wishlist.find((item) => item.id === product.id);
+    const productId = getId(product);
+    const exists = wishlist.find((item) => getId(item) === productId);
+
     if (exists) {
-      // Already exists -> Remove (Toggle)
-
-      setWishlist((prev) => prev.filter((item) => item.id !== product.id));
+      setWishlist((prev) => prev.filter((item) => getId(item) !== productId));
     } else {
-      // New -> Add
-
       setWishlist((prev) => [...prev, product]);
     }
   }
 
   function removeFromWishlist(id) {
-    setWishlist((prev) => prev.filter((item) => item.id !== id));
+    setWishlist((prev) => prev.filter((item) => getId(item) !== id));
   }
 
   const totalWishlist = wishlist.length;
