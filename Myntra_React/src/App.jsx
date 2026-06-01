@@ -1,6 +1,7 @@
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -15,6 +16,12 @@ function App() {
     <WishlistProvider>
       <CartProvider>
         <BrowserRouter>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 2500,
+            }}
+          />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
