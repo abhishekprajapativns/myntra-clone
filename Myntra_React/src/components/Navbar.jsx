@@ -2,18 +2,45 @@ import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import toast from "react-hot-toast";
+
+const toastStyle = {
+  borderRadius: "20px",
+  background: "#fff",
+  color: "#333",
+  border: "1px solid #eee",
+  fontWeight: "500",
+  fontSize: "14px",
+  padding: "10px 18px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+};
 
 function Navbar() {
   const { totalItems } = useCart();
   const { totalWishlist } = useWishlist();
   const [search, setSearch] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   const handleSearch = (e) => {
     if (e.key === "Enter" && search.trim() !== "") {
       navigate(`/products?search=${search.trim()}`);
       setSearch("");
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setShowDropdown(false);
+    toast("Logged out successfully!", {
+      icon: "👋",
+      style: toastStyle,
+    });
+    navigate("/auth");
   };
 
   return (
@@ -116,28 +143,66 @@ function Navbar() {
       </div>
 
       {/* Icons */}
-      <div className="flex gap-6">
-        <Link
-          to="/auth"
-          className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
+      <div className="flex gap-6 items-center">
+        {/* Profile / Logout Dropdown */}
+        <div className="relative">
+          <button
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-            />
-          </svg>
-          <span>Profile</span>
-        </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            <span>{isLoggedIn ? user?.firstName || "Profile" : "Profile"}</span>
+          </button>
 
+          {/* Dropdown Menu */}
+          {showDropdown && (
+            <div className="absolute right-0 top-12 bg-white border border-gray-100 rounded-xl shadow-lg w-44 py-2 z-50">
+              {isLoggedIn ? (
+                <>
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <p className="text-sm font-semibold text-gray-800">
+                      {user?.firstName} {user?.lastName}
+                    </p>
+                    <p className="text-xs text-gray-400 truncate">
+                      {user?.email}
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => {
+                    navigate("/auth");
+                    setShowDropdown(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm text-pink-600 hover:bg-pink-50 transition"
+                >
+                  Login / Sign Up
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Wishlist */}
         <Link
           to="/wishlist"
           className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
@@ -159,6 +224,7 @@ function Navbar() {
           <span>Wishlist({totalWishlist})</span>
         </Link>
 
+        {/* Bag */}
         <Link
           to="/bag"
           className="flex flex-col items-center text-sm text-gray-900 hover:text-pink-600 transition"
