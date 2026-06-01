@@ -1,8 +1,22 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+const toastStyle = {
+  borderRadius: "20px",
+  background: "#fff",
+  color: "#333",
+  border: "1px solid #eee",
+  fontWeight: "500",
+  fontSize: "14px",
+  padding: "10px 18px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+};
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,23 +39,83 @@ function Auth() {
           email: formData.email,
           password: formData.password,
         });
-        alert(res.data.message);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        toast("Login successful!", {
+          icon: (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          ),
+          style: toastStyle,
+        });
+        setTimeout(() => navigate("/"), 1000);
       } else {
         const res = await axios.post(
           "http://localhost:5000/api/auth/signup",
           formData,
         );
-        alert(res.data.message);
+        toast("Account created! Please login.", {
+          icon: (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          ),
+          style: toastStyle,
+        });
         resetForm();
         setIsLogin(true);
       }
     } catch (error) {
-      alert(error.response.data.message);
+      toast(error.response?.data?.message || "Something went wrong!", {
+        icon: (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ),
+        style: toastStyle,
+      });
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh] bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-6">
@@ -79,7 +153,6 @@ function Auth() {
         </div>
 
         {isLogin ? (
-          /* Login Form */
           <div>
             <h2 className="text-xl font-bold mb-1 text-gray-800">
               Welcome Back!
@@ -88,7 +161,6 @@ function Auth() {
               Login to your Myntra account
             </p>
 
-            {/* Email Input */}
             <div className="relative mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +186,6 @@ function Auth() {
               />
             </div>
 
-            {/* Password Input */}
             <div className="relative mb-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,14 +232,12 @@ function Auth() {
             </p>
           </div>
         ) : (
-          /* Signup Form */
           <div>
             <h2 className="text-xl font-bold mb-1 text-gray-800">
               Create Account
             </h2>
             <p className="text-gray-400 text-sm mb-5">Join Myntra today!</p>
 
-            {/* First + Last Name */}
             <div className="flex gap-3 mb-3">
               <div className="relative flex-1">
                 <svg
@@ -220,7 +289,6 @@ function Auth() {
               </div>
             </div>
 
-            {/* Email */}
             <div className="relative mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +314,6 @@ function Auth() {
               />
             </div>
 
-            {/* Password */}
             <div className="relative mb-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
