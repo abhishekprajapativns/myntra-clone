@@ -35,10 +35,13 @@ function Auth() {
   const handleSubmit = async () => {
     try {
       if (isLogin) {
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
-          email: formData.email,
-          password: formData.password,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/auth/login`,
+          {
+            email: formData.email,
+            password: formData.password,
+          },
+        );
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         toast("Login successful!", {
@@ -64,7 +67,7 @@ function Auth() {
         setTimeout(() => navigate("/"), 1000);
       } else {
         const res = await axios.post(
-          "http://localhost:5000/api/auth/signup",
+          `${import.meta.env.VITE_API_URL}/api/auth/signup`,
           formData,
         );
         toast("Account created! Please login.", {
